@@ -1,0 +1,6 @@
+id	select_type	table	partitions	type	possible_keys	key	key_len	ref	rows	filtered	Extra
+1	SIMPLE	orders	NULL	range	idx_orders_user_status_created	idx_orders_user_status_created	14	NULL	18902	100.00	Using index condition; Backward index scan; Using MRR
+EXPLAIN
+-> Limit: 10000 row(s)  (cost=18289 rows=10000) (actual time=0.351..67.1 rows=10000 loops=1)\n    -> Index range scan on orders using idx_orders_user_status_created over (user_id = 4242 AND status = 1 AND '2025-10-01 00:00:00' <= created_at) (reverse), with index condition: ((orders.`status` = 1) and (orders.user_id = 4242) and (orders.created_at >= TIMESTAMP'2025-10-01 00:00:00'))  (cost=18289 rows=18902) (actual time=0.35..66.5 rows=10000 loops=1)\n
+id	select_type	table	partitions	type	possible_keys	key	key_len	ref	rows	filtered	Extra
+1	SIMPLE	orders	NULL	ref	idx_orders_user_status_created	idx_orders_user_status_created	14	const,const,const	1	100.00	NULL
