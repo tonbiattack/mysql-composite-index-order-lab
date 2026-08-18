@@ -1,0 +1,10 @@
+sudo docker compose up -d --wait
+ Container mysql-composite-index-order-lab  Running
+ Container mysql-composite-index-order-lab  Waiting
+ Container mysql-composite-index-order-lab  Healthy
+DOCKER='sudo docker' bash tests/assert_composite_index_plan.sh
+mysql: [Warning] Using a password on the command line interface can be insecure.
+mysql: [Warning] Using a password on the command line interface can be insecure.
+mysql: [Warning] Using a password on the command line interface can be insecure.
+FAIL: 修正後インデックスの列順が不正です: NULL
+make: *** [Makefile:21: test] Error 1
